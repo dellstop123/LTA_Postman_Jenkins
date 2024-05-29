@@ -225,7 +225,7 @@
 									"    ",
 									"    pm.expect(responseData).to.be.an('object');",
 									"    pm.expect(responseData).to.have.property('message');",
-									"    pm.expect(responseData).to.have.property('statussss');",
+									"    pm.expect(responseData).to.have.property('status');",
 									"});",
 									"",
 									"",
