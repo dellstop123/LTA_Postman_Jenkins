@@ -1174,7 +1174,7 @@
     },
     "requestBodies": {
       "Pet": {
-        "description": "Pet object that needs to be added to the store",
+        "description": "Pet object that needs to be added to get the details from store",
         "content": {
           "application/json": {
             "schema": {
