@@ -1,0 +1,640 @@
+{
+	"info": {
+		"_postman_id": "f8f4e165-0b7b-4a90-82e6-3b8a99737cc1",
+		"name": "ForkData Copy",
+		"description": "Fake APIs for posts and comments data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "6601205-f8f4e165-0b7b-4a90-82e6-3b8a99737cc1"
+	},
+	"item": [
+		{
+			"name": "Animals",
+			"item": [
+				{
+					"name": "Random Fox",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9d95fb99-8a04-4b3a-9a52-1e4e994c96bf",
+								"exec": [
+									"//Fixed syntax",
+									"pm.test(\"Response status code is 200\", function () {",
+									"",
+									"",
+									"        pm.response.to.have.status(200);",
+									"",
+									"});",
+									"pm.globals.get(\"variable_key\");",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"pm.test(\"Response has the required schema fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('image').that.is.a('string');",
+									"    pm.expect(responseData).to.have.property('link').that.is.a('string');",
+									"});",
+									"",
+									"pm.test(\"Image URL has a valid format\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.image).to.exist.and.to.be.a('string');",
+									"  pm.expect(responseData.image).to.match(/^https?:\\/\\/.+\\.(png|jpg|jpeg|gif)$/);",
+									"});",
+									"",
+									"pm.test(\"Ensure that the response contains the expected data structure\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('image').that.is.a('string');",
+									"    pm.expect(responseData).to.have.property('link').that.is.a('string');",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "ae5af5f5-681b-4c2d-91c7-223d40160d37",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://randomfox.ca/floof/",
+							"protocol": "http",
+							"host": [
+								"randomfox",
+								"ca"
+							],
+							"path": [
+								"floof",
+								""
+							]
+						},
+						"description": "### Request Description\n\nThis endpoint makes an HTTP GET request to retrieve a random image and link of a fox. There are no request parameters involved in this request.\n\n### Response\n\nThe response for this request is in JSON format and includes the following fields:\n\n- `image`: A string representing the URL of the random fox image.\n    \n- `link`: A string representing the URL of the source for the random fox image.\n    \n\n### JSON Schema\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"image\": {\n            \"type\": \"string\"\n        },\n        \"link\": {\n            \"type\": \"string\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Cataas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "09b246df-4441-4a68-9bf5-49585c4179ca",
+								"exec": [
+									"// Updated response time test to 300ms",
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body is not null\", function () {",
+									"  pm.expect(pm.response.text()).to.not.be.null;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(3000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "2890570c-1c16-4c22-a164-a519b896ddb9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://cataas.com/cat?tag=brown&type=square&filter=mono",
+							"protocol": "https",
+							"host": [
+								"cataas",
+								"com"
+							],
+							"path": [
+								"cat"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "brown"
+								},
+								{
+									"key": "type",
+									"value": "square"
+								},
+								{
+									"key": "filter",
+									"value": "mono"
+								},
+								{
+									"key": "json",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						},
+						"description": "### Retrieve Cat Information\n\nThis endpoint allows you to retrieve cat information based on specified parameters.\n\n#### Request Parameters\n\n- `tag` (string, required): The tag for the cat.\n    \n- `type` (string, required): The type of the cat.\n    \n- `filter` (string, required): The filter to be applied to the cat image.\n    \n\n#### Response\n\nThe response for this request is a JSON object with the following schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"catId\": {\n      \"type\": \"string\"\n    },\n    \"imageUrl\": {\n      \"type\": \"string\"\n    },\n    \"tag\": {\n      \"type\": \"string\"\n    },\n    \"type\": {\n      \"type\": \"string\"\n    },\n    \"filter\": {\n      \"type\": \"string\"\n    }\n  }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Dogs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4beaa80f-cb3d-40c9-bf97-76ab3c10e9f7",
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.to.have.status(200));",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is within an acceptable range\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.have.property('message');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a valid URL format\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData.message).to.match(/^https?:\\/\\/[\\w\\-.]+/);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response schema matches the expected schema\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.have.property('status').that.is.a('string');",
+									"    pm.expect(responseData).to.have.property('message').that.is.a('string');",
+									"    pm.environment.set(\"guneet\", \"guneet\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "6c99c73c-ed19-498a-a415-897c6fda94a7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breeds/image/random",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breeds",
+								"image",
+								"random"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dogs Breed List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "938d4ca3-754b-42af-9995-a362c0e29b82",
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('message');",
+									"    pm.expect(responseData).to.have.property('status');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "9d231674-ee38-4fdd-a4b0-2761b4958aa7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breeds/list/all",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breeds",
+								"list",
+								"all"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of all dog breeds. The request does not include a request body as it is a GET request. The response will include a JSON object with all the dog breeds and their sub-breeds, if any."
+					},
+					"response": []
+				},
+				{
+					"name": "Dog By Breed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2f25c52e-47de-4f6d-aaf6-cfe665afe773",
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response schema is valid for the expected structure and data types\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.be.an('array');",
+									"  responseData.message.forEach(function(imageUrl) {",
+									"    pm.expect(imageUrl).to.be.a('string');",
+									"  });",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "f57b83e9-fe9e-4008-a4f4-e75dc7b2b732",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breed/akita/images",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breed",
+								"akita",
+								"images"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of images of the Akita breed. The response of this request can be documented as a JSON schema to provide a structured description of the expected response data."
+					},
+					"response": []
+				}
+			],
+			"id": "a090456f-97a2-4aa1-93e1-f5989de3d1a6"
+		},
+		{
+			"name": "Location",
+			"item": [
+				{
+					"name": "ISS Current Location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d57042f-7a67-4914-b988-fdfc263d6ec5",
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.get(\"variable_key\");\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('timestamp');\r",
+									"    pm.expect(responseData).to.have.property('iss_position');\r",
+									"    pm.expect(responseData).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Latitude and longitude are in valid format\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData.iss_position.latitude).to.be.a('string').and.to.match(/^[-]?\\d+(\\.\\d+)?$/);\r",
+									"  pm.expect(responseData.iss_position.longitude).to.be.a('string').and.to.match(/^[-]?\\d+(\\.\\d+)?$/);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "d3bb06ea-4a3e-41ff-9d0f-ffa6f290e7b8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api.open-notify.org/iss-now.json",
+							"protocol": "http",
+							"host": [
+								"api",
+								"open-notify",
+								"org"
+							],
+							"path": [
+								"iss-now.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Earth Meteorite Landings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8a336895-5566-414d-935f-e6f5de29df5f",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "3a5eb5ea-8c82-4d84-8c11-ba62b919a62b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://data.nasa.gov/resource/y77d-th95.json",
+							"protocol": "https",
+							"host": [
+								"data",
+								"nasa",
+								"gov"
+							],
+							"path": [
+								"resource",
+								"y77d-th95.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Earthquakes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c168346d-b4a1-4a8f-8ecc-b80057067b6e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "082a94c3-2686-4742-a4a3-eb0d1ee1e534",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson",
+							"protocol": "https",
+							"host": [
+								"earthquake",
+								"usgs",
+								"gov"
+							],
+							"path": [
+								"earthquakes",
+								"feed",
+								"v1.0",
+								"summary",
+								"all_hour.geojson"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "ddfb32f7-4210-476d-bc40-35030fb6d9d3"
+		},
+		{
+			"name": "Climate and Weather",
+			"item": [
+				{
+					"name": "Global Temperature Anamoly",
+					"id": "5f6bafdb-a17a-4f05-bd93-69e292059f41",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.ncdc.noaa.gov/cag/global/time-series/globe/land_ocean/ytd/12/1880-2016.json",
+							"protocol": "https",
+							"host": [
+								"www",
+								"ncdc",
+								"noaa",
+								"gov"
+							],
+							"path": [
+								"cag",
+								"global",
+								"time-series",
+								"globe",
+								"land_ocean",
+								"ytd",
+								"12",
+								"1880-2016.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "US Annual Average Temperature and Anamoly",
+					"id": "d57c89b4-0e62-48c2-85d4-28f9cc98c372",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.ncdc.noaa.gov/cag/national/time-series/110-tavg-ytd-12-1895-2016.json?base_prd=true&begbaseyear=1901&endbaseyear=2000",
+							"protocol": "https",
+							"host": [
+								"www",
+								"ncdc",
+								"noaa",
+								"gov"
+							],
+							"path": [
+								"cag",
+								"national",
+								"time-series",
+								"110-tavg-ytd-12-1895-2016.json"
+							],
+							"query": [
+								{
+									"key": "base_prd",
+									"value": "true"
+								},
+								{
+									"key": "begbaseyear",
+									"value": "1901"
+								},
+								{
+									"key": "endbaseyear",
+									"value": "2000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Contiguous US Annual Precipitation",
+					"id": "820f4e5d-5a7f-45b1-8c4e-502d2f4f951f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.ncdc.noaa.gov/cag/national/time-series/110-pcp-ytd-12-1895-2016.json?base_prd=true&begbaseyear=1901&endbaseyear=2000",
+							"protocol": "https",
+							"host": [
+								"www",
+								"ncdc",
+								"noaa",
+								"gov"
+							],
+							"path": [
+								"cag",
+								"national",
+								"time-series",
+								"110-pcp-ytd-12-1895-2016.json"
+							],
+							"query": [
+								{
+									"key": "base_prd",
+									"value": "true"
+								},
+								{
+									"key": "begbaseyear",
+									"value": "1901"
+								},
+								{
+									"key": "endbaseyear",
+									"value": "2000"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "0e7407ba-9fdb-42ed-96d1-b5a9000a4682"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "57072242-5890-4e34-b0d4-9758c7cdae6d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fa1e98b4-cbd3-464c-ab99-0599ebe7e49a",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
