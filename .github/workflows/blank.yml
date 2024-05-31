@@ -1,36 +1,19 @@
-# This is a basic workflow to help you get started with Actions
+name: Automated API tests using Postman CLI
 
-name: CI
+on: push
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  automated-api-tests:
+    runs-on: macos-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - uses: actions/checkout@v3
+      - name: Install Postman CLI
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          curl -o- "https://dl-cli.pstmn.io/install/osx_64.sh" | sh
+      - name: Login to Postman CLI
+        run: postman login --with-api-key PMAK-66597a7182e319000195d626-725da6eb0bb25e749aa251ee36b5cc4e26
+      - name: Run API tests
+        run: |
+          postman collection run "${{ github.workspace }}/postman/collections/Petstore.json" --integration-id "163879-${{ github.run_id }}"
+          # Lint your API using Postman CLI
+          postman api lint 2542b7a9-acd1-461e-8330-4cf5f5b4fa42 --integration-id 163879
