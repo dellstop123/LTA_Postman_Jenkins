@@ -1232,6 +1232,21 @@
 				},
 				{
 					"name": "Add a new pet to the store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9b196000-ab3c-4693-82f7-bb7d4e8a977b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "847b1702-ff2c-45bd-b159-fd17b6aa9137",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
