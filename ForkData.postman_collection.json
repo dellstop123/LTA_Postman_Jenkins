@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "97537203-f852-48b0-b651-9c5e6b28b993",
 		"name": "ForkData",
-		"description": "Fake APIs for posts and comments data",
+		"description": "Fake APIs adding for posts and comments data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "6601205"
 	},
