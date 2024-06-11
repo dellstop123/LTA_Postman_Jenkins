@@ -2740,6 +2740,21 @@
 				},
 				{
 					"name": "Create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fd161024-545d-4947-9585-cd3b96ecb672",
+								"exec": [
+									"pm.globals.get(\"variable_key\");",
+									"pm.variables.get(\"variable_key\");",
+									"pm.collectionVariables.get(\"variable_key\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "0625af88-8faf-4be5-89e0-e493fcea3e73",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
