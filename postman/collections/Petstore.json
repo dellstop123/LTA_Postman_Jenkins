@@ -2760,6 +2760,21 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "fyftfhvh",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "dgffgfghv",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
