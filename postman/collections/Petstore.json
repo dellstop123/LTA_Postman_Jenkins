@@ -15,6 +15,21 @@
 					"item": [
 						{
 							"name": "Finds Pets by status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a75e80eb-5640-4ce0-a6e8-e6a09487d7c5",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"id": "9cd4b66d-0599-447f-b5bd-d51cafb8984f",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
