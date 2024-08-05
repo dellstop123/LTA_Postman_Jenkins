@@ -832,6 +832,21 @@
 				},
 				{
 					"name": "Update an existing pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94c039b9-066f-4bcb-82cb-ab663e210e63",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "99f4d91a-d48e-493f-aaf4-82c37814e100",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
