@@ -15,6 +15,21 @@
 					"item": [
 						{
 							"name": "Finds Pets by status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a75e80eb-5640-4ce0-a6e8-e6a09487d7c5",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"id": "9cd4b66d-0599-447f-b5bd-d51cafb8984f",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -817,6 +832,21 @@
 				},
 				{
 					"name": "Update an existing pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94c039b9-066f-4bcb-82cb-ab663e210e63",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "99f4d91a-d48e-493f-aaf4-82c37814e100",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -1232,6 +1262,21 @@
 				},
 				{
 					"name": "Add a new pet to the store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9b196000-ab3c-4693-82f7-bb7d4e8a977b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "847b1702-ff2c-45bd-b159-fd17b6aa9137",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -2725,11 +2770,41 @@
 				},
 				{
 					"name": "Create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fd161024-545d-4947-9585-cd3b96ecb672",
+								"exec": [
+									"pm.globals.get(\"variable_key\");",
+									"pm.variables.get(\"variable_key\");",
+									"pm.collectionVariables.get(\"variable_key\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "0625af88-8faf-4be5-89e0-e493fcea3e73",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "fyftfhvh",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "dgffgfghv",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
